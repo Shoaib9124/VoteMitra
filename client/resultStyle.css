@@ -1,154 +1,137 @@
-/* Import Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-/* Global Reset */
-* {
+body {
+  background: linear-gradient(135deg, #0a0a0a 0%, #001f00 100%);
+  min-height: 100vh;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  font-family: 'Courier New', monospace;
+  color: #00ff41;
+  overflow-x: hidden;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-  background-size: 200% 200%;
-  height: 100vh;
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(0, 20, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid #00ff41;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+  animation: fadeIn 1s ease-in;
+}
+
+.title-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: gradientMove 6s infinite alternate;
 }
 
-/* Container */
-.container {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  padding: 40px;
+h1 {  
+  /* all for the matrix */
   text-align: center;
-  width: 350px;
-  animation: fadeIn 1s ease-in-out;
-  transform: scale(0.95);
-  transition: transform 0.4s ease-in-out;
-}
-
-.container:hover {
-  transform: scale(1);
-}
-
-/* Heading */
-h1 {
-  font-size: 28px;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 30px;
-  letter-spacing: 1px;
+  font-size: 2.5rem;
   text-transform: uppercase;
-  animation: fadeInText 2s ease-out;
-}
+  letter-spacing: 3px;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 10px #00ff41;
+  background: linear-gradient(45deg, #00ff41, #00cc33);
+  
+  /* Standard properties */
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
 
-/* Button Container */
-.button-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  animation: fadeInText 2s ease-out 0.2s;
+  /* Fallback for WebKit-based browsers */
+  @supports (-webkit-background-clip: text) or (background-clip: text) {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
-
-/* Buttons */
-button {
-  background: rgba(255, 255, 255, 0.2);
+#showResultsBtn {
+  display: block;
+  margin: 0 auto 2rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(45deg, #00ff41, #00cc33);
   border: none;
-  padding: 14px 22px;
-  font-size: 16px;
-  color: white;
-  border-radius: 5px;
+  border-radius: 3px;
+  color: #001f00;
+  font-weight: bold;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: 0.3s ease-in-out;
-  font-weight: 600;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
 }
 
-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.3);
-  transition: 0.3s ease-in-out;
-  z-index: -1;
+#showResultsBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 255, 65, 0.5);
+  background: linear-gradient(45deg, #00cc33, #00ff41);
 }
 
-button:hover::before {
-  left: 0;
+#resultsSection {
+  padding: 1.5rem;
+  background: rgba(0, 30, 0, 0.9);
+  border: 1px solid #00ff41;
+  border-radius: 3px;
+  min-height: 200px;
+  transition: all 0.5s ease;
 }
 
-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.4);
-  transition: 0.2s ease-in-out;
+#resultsSection p {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
 }
 
-button:active {
-  transform: translateY(0);
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Button Colors */
-#voteBtn { background: #00c6ff; }
-#voteBtn:hover { background: #0085ff; }
-
-#addPollBtn { background: #ff7300; }
-#addPollBtn:hover { background: #cc5c00; }
-
-#resultsBtn { background: #33cc33; }
-#resultsBtn:hover { background: #28a745; }
-
-/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeInText {
-  0% { opacity: 0; transform: translateY(-20px); }
-  100% { opacity: 1; transform: translateY(0); }
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-@keyframes gradientMove {
-  0% { background-position: left; }
-  100% { background-position: right; }
+::-webkit-scrollbar-track {
+  background: rgba(0, 20, 0, 0.8);
 }
 
-/* Smooth Gradient Transitions */
-@keyframes gradientGlow {
-  0% { background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d); }
-  50% { background: linear-gradient(135deg, #ff7300, #fdbb2d, #1a2a6c); }
-  100% { background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d); }
+::-webkit-scrollbar-thumb {
+  background: #00ff41;
+  border-radius: 4px;
 }
 
-body {
-  animation: gradientGlow 12s ease-in-out infinite;
+@media (max-width: 768px) {
+  .container {
+      margin: 1rem;
+      padding: 1rem;
+  }
+  h1 {
+      font-size: 2rem;
+  }
 }
 
-/* Hover effects for buttons */
-button {
-  transition: 0.3s ease;
-}
-
-button:hover {
-  transform: scale(1.05);
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
-}
-
-/* Animation for buttons when hovered */
-button:hover::before {
+/* Matrix Rain Effect */
+.matrix-overlay {
+  position: fixed;
+  top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.15; /* Increased for better visibility */
+  z-index: -1;
+  background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 255, 65, 0.15) 0px,
+      rgba(0, 255, 65, 0.15) 1px,
+      transparent 1px,
+      transparent 20px
+  );
+  animation: matrixRain 40s linear infinite; /* Faster animation */
+}
+
+@keyframes matrixRain {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
 }

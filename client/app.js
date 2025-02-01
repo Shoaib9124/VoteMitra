@@ -8,6 +8,7 @@ App = {
     await App.loadContract();
     await App.render();
     App.bindEvents();
+    App.startMatrixEffect(); //for results
   },
 
   loadWeb3: async () => {
@@ -266,6 +267,50 @@ decodeQRCodeFromFile: async (file) => {
     }
   },
 
+  startMatrixEffect: () => {
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    document.body.appendChild(canvas);
+    canvas.style.position = "fixed";
+    canvas.style.top = "0";
+    canvas.style.left = "0";
+    canvas.style.width = "100vw";
+    canvas.style.height = "100vh";
+    canvas.style.zIndex = "-1"; // Send it behind everything
+    canvas.style.opacity = "0.1"; // Make it subtle
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const columns = Math.floor(canvas.width / 15); // Number of columns for characters
+    const drops = Array(columns).fill(0); // Y positions of falling characters
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#00ff41";
+      ctx.font = "15px Courier New";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = String.fromCharCode(0x30A0 + Math.random() * 96); // Random characters
+        const x = i * 15;
+        const y = drops[i] * 15;
+
+        ctx.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0; // Reset drop to top
+        }
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 50); // Call drawMatrix every 50ms for animation
+  },
+  
   setLoading: (boolean) => {
     App.loading = boolean;
     const loader = $('#loader');
