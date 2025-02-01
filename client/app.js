@@ -286,19 +286,22 @@ decodeQRCodeFromFile: async (file) => {
     const columns = Math.floor(canvas.width / 15); // Number of columns for characters
     const drops = Array(columns).fill(0); // Y positions of falling characters
 
+    // Define the characters you want to display in the matrix (English and Hindi or whatever)
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ॐअआइईउऊऋऌएऐओऔ'; // Mix of English and Hindi
+
     function drawMatrix() {
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.fillStyle = "#00ff41";
-      ctx.font = "15px Courier New";
+      ctx.font = "15px Courier New"; // Ensure this font supports the characters
 
       for (let i = 0; i < drops.length; i++) {
-        const text = String.fromCharCode(0x30A0 + Math.random() * 96); // Random characters
+        const randomChar = characters[Math.floor(Math.random() * characters.length)]; // Random character from the list
         const x = i * 15;
         const y = drops[i] * 15;
 
-        ctx.fillText(text, x, y);
+        ctx.fillText(randomChar, x, y);
 
         if (y > canvas.height && Math.random() > 0.975) {
           drops[i] = 0; // Reset drop to top
@@ -309,8 +312,9 @@ decodeQRCodeFromFile: async (file) => {
     }
 
     setInterval(drawMatrix, 50); // Call drawMatrix every 50ms for animation
-  },
-  
+}
+,
+
   setLoading: (boolean) => {
     App.loading = boolean;
     const loader = $('#loader');

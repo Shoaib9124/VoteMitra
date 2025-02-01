@@ -70,7 +70,7 @@ contract Voting {
         // Mark the QR code as used..will have to implement again in js
         poll.usedQrCodes[qrCode] = true;
 
-        // Inside the vote function
+        // Inside the vote function,who is sending it
         voters.push(msg.sender);
 
         // Emit the vote event with QR code
