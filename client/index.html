@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voting System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="index">
+  <img src="logo.png" alt="Logo" class="logo">
+    <div class="container">
+      <h1>Blockchain Voting System</h1>
+      <div class="button-container">
+        <button id="voteBtn">Vote</button>
+        <button id="addPollBtn">Add Poll</button>
+        <button id="resultsBtn">View Results</button>
+      </div>
+    </div>
+
+
+<!-- Truffle Contract -->
+<script src="https://cdn.jsdelivr.net/npm/@truffle/contract@4.3.0/dist/truffle-contract.min.js"></script>
+
+<!-- Web3.js -->
+<script src="https://cdn.jsdelivr.net/npm/web3@1.6.1/dist/web3.min.js"></script>
+
+    
+
+    <!-- for j query ,idk why is used-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="app.js"></script>
+    
+    
+    
+    
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const page = document.body.getAttribute("data-page");
+
+        // Main page logic
+        if (page === "index") {
+          const navigate = (page) => {
+            window.location.href = page;
+          };
+
+          // Navigate to vote.html
+          document.getElementById("voteBtn").addEventListener("click", () => navigate("vote.html"));
+
+          // Navigate to addPoll.html
+          document.getElementById("addPollBtn").addEventListener("click", () => navigate("addPoll.html"));
+
+          // Navigate to results.html
+          document.getElementById("resultsBtn").addEventListener("click", () => navigate("results.html"));
+        }
+      });
+    </script>
+</body>
+</html>

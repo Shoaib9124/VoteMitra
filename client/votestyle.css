@@ -1,0 +1,267 @@
+/* Enhanced CSS with Cool Animations */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(45deg, #1e3c72, #2a5298, #4a6da7);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite, backgroundAnimation 10s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes backgroundAnimation {
+    0% { background-color: rgba(30, 60, 114, 0.8); }
+    50% { background-color: rgba(42, 82, 152, 0.8); }
+    100% { background-color: rgba(30, 60, 114, 0.8); }
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px) saturate(180%);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    animation: fadeInScale 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    animation: shine 6s infinite linear;
+}
+
+@keyframes shine {
+    0% { transform: rotate(45deg) translateX(-50%); }
+    100% { transform: rotate(45deg) translateX(50%); }
+}
+
+h1 {
+    font-size: 2.2em;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    from { text-shadow: 0 0 10px rgba(255 , 255, 255, 0 .5), 0 0 20px rgba(255, 255, 255, 0.5); }
+    to { text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1); }
+}
+
+#loader {
+    font-size: 1.5em;
+    font-weight: bold;
+    animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+#pollsList {
+    margin: 20px 0;
+}
+
+.pollTemplate {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pollTemplate:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.question {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.options label {
+    display: block;
+    margin: 5px 0;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.options label:hover {
+    transform: scale(1.05);
+}
+
+
+
+label[for="qrUpload"] {
+    background: linear-gradient(90deg, #ff9800, #ff5722);
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    margin-top: 10px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+label[for="qrUpload"]:hover {
+    background: linear-gradient(90deg, #e68900, #e64a19);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#voteBtn {
+    background: linear-gradient(90deg, #28a745, #218838);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+#voteBtn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+#voteBtn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease;
+    z-index: 0;
+}
+
+#voteBtn:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#votersListSection {
+    margin-top: 20px;
+}
+
+#votersList {
+    list-style: none;
+    padding: 0;
+}
+
+#votersList li {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+#votersList li:nth-child(1) { animation-delay: 0.1s; }
+#votersList li:nth-child(2) { animation-delay: 0.2s; }
+#votersList li:nth-child(3) { animation-delay: 0.3s; }
+#votersList li:nth-child(4) { animation-delay: 0.4s; }
+#votersList li:nth-child(5) { animation-delay: 0.5s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    #voteBtn {
+        font-size: 1em;
+        padding: 10px 15px;
+    }
+
+    .pollTemplate {
+        padding: 10px;
+    }
+
+    .question {
+        font-size: 1.2em;
+    }
+
+    .options label {
+        font-size: 1em;
+    }
+     
+    }
+
+    /* Custom file upload button */
+/* Fix for QR Upload Button */
+label[for="qrUpload"] {
+    /* Add these properties to ensure clickability */
+    position: relative;
+    z-index: 2; /* Ensure it's above any container overlays */
+    pointer-events: all; /* Explicitly enable interactions */
+}
+
+/* Fix the media query formatting issue */
+@media (max-width: 1768px) {
+    input[type="radio"] {
+        transform: scale(1.8);
+        margin-right: 10px;
+    }
+    /* Add closing brace for media query */
+}
+
+/* Ensure custom upload button is clickable */
+.custom-file-upload {
+    position: relative;
+    z-index: 2;
+    pointer-events: all;
+}
+
+/* Add hover state for better feedback */
+.custom-file-upload:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+
+/* Final Touches */
+h1, #loader {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+
+}
+

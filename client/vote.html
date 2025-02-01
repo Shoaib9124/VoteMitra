@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cast Your Vote</title>
+  <link rel="stylesheet" href="votestyle.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Cast Your Vote</h1>
+
+    <!-- Loading message -->
+    <div id="loader" style="display: none;">
+      <h2>Loading...</h2>
+    </div>
+
+    <!-- Content -->
+    <div id="content">
+      <!-- Polls Section -->
+      <div id="pollsList">
+        <!-- Polls will be dynamically added here -->
+      </div>
+
+      <!-- Voting Form -->
+      <div id="voteForm">
+        <h3>Select your vote</h3>
+
+        <!-- Poll Template that will be dynamically populated -->
+        <div class="pollTemplate" style="display: none;">
+          <p class="question"></p>
+          <div class="options"></div>
+        </div>
+
+        <!-- QR Code Upload -->
+        <div>
+          <label for="qrUpload" class="custom-file-upload">
+            <i class="fas fa-upload"></i> Upload your QR code to confirm your identity
+          </label>
+          <input type="file" id="qrUpload" accept="image/*" onchange="App.handleQRUpload(event)" style="display: none;">
+        </div>
+
+        <!-- Submit Vote -->
+        <button id="voteBtn" onclick="App.vote()">Submit Vote</button>
+      </div>
+
+      <!-- Voters List Section (triggered after vote) -->
+      <div id="votersListSection" style="display: none;">
+        <h3>List of Voters</h3>
+        <ul id="votersList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- QR Code decoding library -->
+  <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+
+  <!-- Truffle Contract -->
+  <script src="https://cdn.jsdelivr.net/npm/@truffle/contract@4.3.0/dist/truffle-contract.min.js"></script>
+
+  <!-- Web3.js -->
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.6.1/dist/web3.min.js"></script>
+
+  <!-- Your app script -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set the body background to white */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-image: url('background.jpg');/*using hands*/
+  background-color: white;  /* Set background to white */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: gradientMove 6s infinite alternate;
+}
+
+/* Container */
+.container {
+  background: rgba(255, 255, 255, 0.8); /* Lighter backdrop */
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  text-align: center;
+  width: 350px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Heading - Increased size */
+h1 {
+  font-size: 36px;  /* Increased font size */
+  font-weight: 600;
+  color: #333;  /* Darker color for visibility */
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px #80ffdb, 0 0 20px #00b4d8;
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Buttons */
+button {
+  background: rgba(255, 255, 255, 0.6);  /* Transparent button with white background */
+  border: none;
+  padding: 15px 25px;  /* Larger padding for bigger buttons */
+  font-size: 18px;  /* Larger text size */
+  color: white;
+  border-radius: 8px;  /* More rounded corners */
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Hover effect for buttons */
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: 0.3s ease-in-out;
+  z-index: -1;
+}
+
+button:hover::before {
+  left: 0;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 5px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Button Colors */
+#voteBtn { background: #00c6ff; }
+#voteBtn:hover { background: #0085ff; }
+
+#addPollBtn { background: #ff7300; }
+#addPollBtn:hover { background: #cc5c00; }
+
+#resultsBtn { background: #33cc33; }
+#resultsBtn:hover { background: #28a745; }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientMove {
+  0% { background-position: left; }
+  100% { background-position: right; }
+}
+
+@keyframes textGlow {
+  from {
+      text-shadow: 0 0 5px #80ffdb, 0 0 10px #00b4d8;
+  }
+  to {
+      text-shadow: 0 0 15px #80ffdb, 0 0 25px #00b4d8, 0 0 35px #00b4d8;
+  }
+}
+
+/* Logo Styles */
+.logo {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  width: 280px;
+  height: 200px;
+  animation: logoFloat 3s ease-in-out infinite, 
+             logoGlow 4s linear infinite,
+             fadeIn 1s ease-out;
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+.logo:hover {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes logoGlow {
+  0% {
+      filter: drop-shadow(0 0 8px #00b4d8);
+  }
+  50% {
+      filter: drop-shadow(0 0 12px #80ffdb);
+  }
+  100% {
+      filter: drop-shadow(0 0 8px #00b4d8);
+  }
+}
+
