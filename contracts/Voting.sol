@@ -34,7 +34,7 @@ contract Voting {
         }
     }
 
-    // Function to get the count of polls
+    // Function to get the count of polls i.e total
     function pollsCount() public view returns (uint) {
         return polls.length;
     }
@@ -44,12 +44,16 @@ contract Voting {
         return polls[_pollIndex].options;
     }
 
+    function getPollQuestion(uint _pollIndex) public view returns (string memory){
+        return polls[_pollIndex].question;
+    }//was undefined before
+
     // Vote in a poll
     function vote(uint256 pollIndex, uint256 optionIndex, string memory qrCode) public {
         // Ensure that the sender hasn't already voted
         require(!hasVoted[msg.sender], "You have already voted");
 
-        // Ensure the poll exists and the optionIndex is valid
+        // Ensure the poll exists and the optionIndex is valid..for edges cases
         require(pollIndex < polls.length, "Invalid poll index");
         Poll storage poll = polls[pollIndex];
         require(optionIndex < poll.options.length, "Invalid option index");
@@ -63,10 +67,12 @@ contract Voting {
         // Mark the sender as having voted
         hasVoted[msg.sender] = true;
 
-        // Mark the QR code as used
+        // Mark the QR code as used..will have to implement again in js
         poll.usedQrCodes[qrCode] = true;
+
         // Inside the vote function
         voters.push(msg.sender);
+
         // Emit the vote event with QR code
         emit Voted(msg.sender, pollIndex, optionIndex, qrCode);
     }
@@ -83,11 +89,10 @@ contract Voting {
     }
 
     function getVoters() public view returns (address[] memory) {
-    return voters;
+        return voters;
     }
 
-
-    //for specific polls
+    // For specific polls
     function getPollVotes(uint256 _pollIndex) public view returns (uint256[] memory) {
         Poll storage poll = polls[_pollIndex];
         uint256[] memory votes = new uint256[](poll.options.length);
@@ -98,5 +103,4 @@ contract Voting {
 
         return votes;
     }
-
 }
