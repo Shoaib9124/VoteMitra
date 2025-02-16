@@ -82,7 +82,7 @@ git clone https://github.com/Shoaib9124/VoteMitra.git
 truffle compile
 
 
-truffle migrate --network development
+truffle migrate --reset
 
 
 3.Connect Metamask and Vote!
