@@ -1,4 +1,5 @@
 📝 Overview
+<br>
 VoteMitra is a blockchain-powered voting and polling system designed to ensure secure, transparent, and tamper-proof elections. By leveraging Ethereum smart contracts and QR code authentication, VoteMitra prevents fraud, guarantees voter anonymity, and allows real-time result tracking.
 
 🚀 Features
