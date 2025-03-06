@@ -25,6 +25,7 @@ VoteMitra is a blockchain-powered voting and polling system designed to ensure s
 <br>
 Frontend: HTML, CSS, JavaScript<br>
 
+![flow-diagram](https://github.com/user-attachments/assets/c35029fd-16c4-468a-ad91-cb115f9000f2)
 
 Backend: Solidity (Ethereum Smart Contracts), Web3.js
 
